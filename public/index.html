@@ -1,0 +1,258 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Chat Web</title>
+
+        <meta content="width=device-width, initial-scale=1" name="viewport" />
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+       <!-- <link rel='stylesheet' href='css/app.css' type="text/css">-->
+       <link rel="stylesheet" type="text/css" href="css/style.css">
+	<link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="@sweetalert2/theme-dark/dark.css">
+	<link rel="icon" type="image/png" href="images/ventana-de-chat.png" />
+	<script src="sweetalert2/dist/sweetalert2.min.js"></script>
+        <script src='/socket.io/socket.io.js'></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <!-- SDK FIREBASE -->
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-app.js"></script>
+
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+  <script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-firestore.js"></script>
+  <!-- Don't change the format for any other products. -->
+  <!-- etc. -->
+
+
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyAMhsxNhBKRhYscs3SkkR1kw1gxu4IAle4",
+    authDomain: "fb-tutorial-6de95.firebaseapp.com",
+    databaseURL: "https://fb-tutorial-6de95.firebaseio.com",
+    projectId: "fb-tutorial-6de95",
+    storageBucket: "fb-tutorial-6de95.appspot.com",
+    messagingSenderId: "797160596558",
+    appId: "1:797160596558:web:270af0b76ca58966e7cf1f"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  const auth = firebase.auth();
+  const fs = firebase.firestore();
+</script>
+        <script type="module" src='scripts/rtc.js'></script>
+        <script type="module" src='scripts/events.js'></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/webrtc-adapter/7.3.0/adapter.min.js" integrity="sha256-2qQheewaqnZlXJ3RJRghVUwD/3fD9HNqxh4C+zvgmF4=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.8/FileSaver.min.js'></script>
+        <script src='https://cdn.rawgit.com/yahoo/xss-filters/master/dist/xss-filters.js'></script>
+        <script src='scripts/autolink.js'></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.11.5/sweetalert2.all.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.0.0/sweetalert2.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.0.0/sweetalert2.min.js"></script>
+
+    </head>
+
+    <body>
+        <!--<div class="custom-modal" id='recording-options-modal'>
+            <div class="custom-modal-content">
+                <div class="row text-center">
+                    <div class="col-md-6 mb-2">
+                        <span class="record-option" id='record-video'>Record video</span>
+                    </div>
+                    <div class="col-md-6 mb-2">
+                        <span class="record-option" id='record-screen'>Record screen</span>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-md-12 text-center">
+                        <button class="btn btn-outline-danger" id='closeModal'>Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>-->
+        
+        <center><div id="preloader"><div id="contloader">
+          <div id="contextoloader"><strong>Loading...</strong></div>
+              <div class="preloader"></div>
+
+      <!--<strong>Loading...</strong>
+        <div id="imgloader" class="spinner-border ml-auto" role="status" aria-hidden="true"></div>-->
+      <!--<img id="imgloader" src="/images/chatgif.gif">-->
+        </div>
+        </div></center>
+        <nav class="navbar fixed-top bg-secondary rounded-0 d-print-none d-none">
+            <center><div class="text-white title-web">Chat Web</div></center>
+
+           <!-- <div class="pull-right room-comm" hidden>
+                <button class="btn btn-sm rounded-0 btn-no-effect" id='toggle-video' title="Hide Video">
+                    <i class="fa fa-video text-white"></i>
+                </button>
+
+                <button class="btn btn-sm rounded-0 btn-no-effect" id='toggle-mute' title="Mute">
+                    <i class="fa fa-microphone-alt text-white"></i>
+                </button>
+
+                <button class="btn btn-sm rounded-0 btn-no-effect" id='share-screen' title="Share screen">
+                    <i class="fa fa-desktop text-white"></i>
+                </button>
+
+                <button class="btn btn-sm rounded-0 btn-no-effect" id='record' title="Record">
+                    <i class="fa fa-dot-circle text-white"></i>
+                </button>
+
+                <button class="btn btn-sm text-white pull-right btn-no-effect" id='toggle-chat-pane'>
+                    <i class="fa fa-comment"></i> <span class="badge badge-danger very-small font-weight-lighter" id='new-chat-notification' hidden>New</span>
+                </button>
+
+                <button class="btn btn-sm rounded-0 btn-no-effect text-white">
+                    <a href="/" class="text-white text-decoration-none"><i class="fa fa-sign-out-alt text-white" title="Leave"></i></a>
+                </button>
+            </div>-->
+        </nav>
+	<div class="container">
+		<div class="img">
+			<img src="images/bg.svg">
+		</div>
+		<div class="login-content">
+			<form>
+        <!--<div class="imglogin">
+				<img src="images/persona.png">
+        </div>-->
+				<h2 class="title">Ingrese Sala</h2>
+              <div class="input-div nom">
+               <div class="i">
+           		   		<!--<i class="far fa-comments"></i>-->
+                      <i class="fas fa-user-shield"></i>
+           		   </div>
+                  <div class="div">
+                    
+           		   		<h5>Nombre del usuario</h5>
+           		   		<input type="text" id="user-name" class="input" readonly>
+           		   </div>
+              </div>
+              <div class="input-div nom">
+                
+           		   <div class="i">
+           		   		<!--<i class="far fa-comments"></i>-->
+                      <i class="fas fa-chalkboard-teacher"></i>
+           		   </div>
+           		   <div class="div">
+                    
+           		   		<h5>Nombre de la sala</h5>
+           		   		<input type="text" id="room-name" class="input">
+           		   </div>
+                  
+           		</div>
+              
+               <div class="col-12 text-center">
+                    <span class="form-text small text-danger" id='err-msg'></span>
+                </div>
+            	<button id='create-room' class="btn">Crear Sala</button>
+              
+              <nav id='room-created'></nav>
+              
+              <a id="exitCuenta" href="main.html"><div id="salirCuenta">
+                <label id="iconsalir"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-box-arrow-in-left" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd" d="M7.854 11.354a.5.5 0 0 0 0-.708L5.207 8l2.647-2.646a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708 0z"/>
+  <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5h-9a.5.5 0 0 0 0 1h9A.5.5 0 0 0 15 8z"/>
+  <path fill-rule="evenodd" d="M2.5 14.5A1.5 1.5 0 0 1 1 13V3a1.5 1.5 0 0 1 1.5-1.5h8A1.5 1.5 0 0 1 12 3v1.5a.5.5 0 0 1-1 0V3a.5.5 0 0 0-.5-.5h-8A.5.5 0 0 0 2 3v10a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-1.5a.5.5 0 0 1 1 0V13a1.5 1.5 0 0 1-1.5 1.5h-8z"/>
+</svg></label>&nbsp;<label id="contentsalir">Salir de la cuenta</label></div></a>
+            </form>
+            
+        </div>
+        
+    </div>
+    
+        <!--<div class="container-fluid" id='room-create' hidden>
+            <div class="row">
+                <div class="col-12 h2 mt-5 text-center">Crear Sala</div>
+            </div>
+            
+            <div class="row">
+                <div class="col-12 text-center">
+                    <span class="form-text small text-danger" id='err-msg'></span>
+                </div>
+
+                <div class="col-12 col-md-4 offset-md-4 mb-3">
+                    <label for="room-name">Nombre de la sala</label>
+                    <input type="text" id='room-name' class="form-control rounded-0" placeholder="Nombre de la sala">
+                </div>
+
+                <div class="col-12 col-md-4 offset-md-4 mb-3 d-none">
+                    <label for="your-name">Usuario</label>
+                    <input type="text" id='your-name' class="form-control rounded-0" placeholder="Usuario">
+                </div>
+
+                <div class="col-12 col-md-4 offset-md-4 mb-3">
+                    <button id='create-room' class="btn btn-block rounded-0 btn-info">Crear Sala</button>
+                </div>
+
+                <div class="col-12 col-md-4 offset-md-4 mb-3" id='room-created'></div>
+            </div>
+        </div>
+-->
+
+
+       <!-- <div class="container-fluid" id='username-set' hidden>
+            <div class="row">
+                <div class="col-12 h4 mt-5 text-center">Your Name</div>
+            </div>
+            
+            <div class="row mt-2">
+                <div class="col-12 text-center">
+                    <span class="form-text small text-danger" id='err-msg-username'></span>
+                </div>
+
+                <div class="col-12 col-md-4 offset-md-4 mb-3">
+                    <label for="username">Your Name</label>
+                    <input type="text" id='username' class="form-control rounded-0" placeholder="Your Name">
+                </div>
+
+                <div class="col-12 col-md-4 offset-md-4 mb-3">
+                    <button id='enter-room' class="btn btn-block rounded-0 btn-info">Enter Room</button>
+                </div>
+            </div>
+        </div>
+
+
+        
+        <div class="container-fluid room-comm" hidden>
+            <div class="row">
+                <video class="local-video mirror-mode" id='local' volume='0' autoplay muted></video>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-12 main" id='main-section'>                    
+                    <div class="row mt-2 mb-2" id='videos'></div>
+                </div>
+
+                <div class="col-md-3 chat-col d-print-none mb-2 bg-info" id='chat-pane' hidden>
+                    <div class="row">
+                        <div class="col-12 text-center h2 mb-3">CHAT</div>
+                    </div>
+
+                    <div id='chat-messages'></div>
+
+                    <div class="row">
+                        <textarea id='chat-input' class="form-control rounded-0 chat-box border-info" rows='3' placeholder="Type here..."></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>-->
+        <!--<iframe id="frame1" src="https://ChatNodeJS.jesusmartinmar1.repl.co/chat.html"></iframe>-->
+        <script type="text/javascript" src="scripts/main.js"></script>
+    </body>
+</html>

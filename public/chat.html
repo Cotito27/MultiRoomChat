@@ -1,0 +1,909 @@
+<html>
+
+<head>
+	<!-- <link rel="stylesheet" href="css/main.css">-->
+	<title>Chat Web</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+	 crossorigin="anonymous">
+	<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css"/>-->
+	<link rel="stylesheet" href="@sweetalert2/theme-dark/dark.css">
+	<link rel="icon" type="image/png" href="images/ventana-de-chat.png" />
+	<script src="sweetalert2/dist/sweetalert2.min.js">
+
+	</script>
+	<link rel="stylesheet" href="css/chat.css">
+	<script src="https://kit.fontawesome.com/9ac3f17ed5.js" crossorigin="anonymous">
+
+	</script>
+  <!--importe nuevo-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/webrtc-adapter/7.3.0/adapter.min.js" integrity="sha256-2qQheewaqnZlXJ3RJRghVUwD/3fD9HNqxh4C+zvgmF4=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.8/FileSaver.min.js'></script>
+        <script src='https://cdn.rawgit.com/yahoo/xss-filters/master/dist/xss-filters.js'></script>
+   <!-- Fin -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	</meta>
+	<script src="/socket.io/socket.io.js">
+
+	</script>
+ <!-- <script defer src="https://use.fontawesome.com/releases/v5.7.1/js/all.js" integrity="sha384-eVEQC9zshBn0rFj4+TU78eNA19HMNigMviK/PU/FFjLXqa/GKPgX58rvt5Z8PLs7" crossorigin="anonymous"></script>
+    
+    <!-- Theme CSS -->  
+    <!--<link id="theme-style" rel="stylesheet" href="assets/css/theme-1.css">-->
+</head>
+
+<body>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js">
+
+	</script>
+	<!--<div class="menu">
+            <div class="back"><i class="fa fa-chevron-left"></i> <img src="https://i.imgur.com/DY6gND0.png" draggable="false"/></div>
+            <div class="name">Alex</div>
+            <div class="last">18:09</div>
+        </div>
+    <ol class="chat">
+    <li class="other">
+        <div class="avatar"><img src="https://i.imgur.com/DY6gND0.png" draggable="false"/></div>
+      <div class="msg">
+        <p>Hola!</p>
+        <p>Te vienes a cenar al centro? <emoji class="pizza"/></p>
+        <time>20:17</time>
+      </div>
+    </li>
+    <li class="self">
+        <div class="avatar"><img src="https://i.imgur.com/HYcn9xO.png" draggable="false"/></div>
+      <div class="msg">
+        <p>Puff...</p>
+        <p>Aún estoy haciendo el contexto de Góngora... <emoji class="books"/></p>
+        <p>Mejor otro día</p>
+        <time>20:18</time>
+      </div>
+    </li>
+    <li class="other">
+        <div class="avatar"><img src="https://i.imgur.com/DY6gND0.png" draggable="false"/></div>
+      <div class="msg">
+        <p>Qué contexto de Góngora? <emoji class="suffocated"/></p>
+        <time>20:18</time>
+      </div>
+    </li>
+    <li class="self">
+        <div class="avatar"><img src="https://i.imgur.com/HYcn9xO.png" draggable="false"/></div>
+      <div class="msg">
+        <p>El que mandó Marialu</p>
+        <p>Es para mañana...</p>
+        <time>20:18</time>
+      </div>
+    </li>
+    <li class="other">
+        <div class="avatar"><img src="https://i.imgur.com/DY6gND0.png" draggable="false"/></div>
+      <div class="msg">
+        <p><emoji class="scream"/></p>
+        <p>Pásamelo! <emoji class="please"/></p>
+        <time>20:18</time>
+      </div>
+    </li>
+    <li class="self">
+        <div class="avatar"><img src="https://i.imgur.com/HYcn9xO.png" draggable="false"/></div>
+      <div class="msg">
+        <img src="https://i.imgur.com/QAROObc.jpg" draggable="false"/>
+        <time>20:19</time>
+      </div>
+    </li>
+    <li class="other">
+        <div class="avatar"><img src="https://i.imgur.com/DY6gND0.png" draggable="false"/></div>
+      <div class="msg">
+        <p>Gracias! <emoji class="hearth_blue"/></p>
+        <time>20:20</time>
+      </div>
+    </li>
+        <div class="day">Hoy</div>
+    <li class="self">
+        <div class="avatar"><img src="https://i.imgur.com/HYcn9xO.png" draggable="false"/></div>
+      <div class="msg">
+        <p>Te apetece jugar a Minecraft?</p>
+        <time>18:03</time>
+      </div>
+    </li>
+    <li class="other">
+        <div class="avatar"><img src="https://i.imgur.com/DY6gND0.png" draggable="false"/></div>
+      <div class="msg">
+        <p>Venga va, hace ya mucho que no juego...</p>
+        <time>18:07</time>
+      </div>
+    </li>
+    <li class="self">
+        <div class="avatar"><img src="https://i.imgur.com/HYcn9xO.png" draggable="false"/></div>
+      <div class="msg">
+        <p>Ehh, me crashea el Launcher... <emoji class="cryalot"/></p>
+        <time>18:08</time>
+      </div>
+    </li>
+    <li class="other">
+        <div class="avatar"><img src="https://i.imgur.com/DY6gND0.png" draggable="false"/></div>
+      <div class="msg">
+        <p><emoji class="lmao"/></p>
+        <time>18:08</time>
+      </div>
+    </li>
+    <li class="self">
+        <div class="avatar"><img src="https://i.imgur.com/HYcn9xO.png" draggable="false"/></div>
+      <div class="msg">
+        <p>Es broma</p>
+        <p>Ataque Moai!</p>
+        <p><span><emoji class="moai"/></span><span><emoji class="moai"/></span><span><emoji class="moai"/></span><span><emoji class="moai"/></span><span><emoji class="moai"/></span><span><emoji class="moai"/></span></p>
+        <time>18:09</time>
+      </div>
+    </li>
+    <li class="other">
+        <div class="avatar"><img src="https://i.imgur.com/DY6gND0.png" draggable="false"/></div>
+      <div class="msg">
+          <p>Copón</p>
+        <p><emoji class="funny"/></p>
+        <time>18:08</time>
+      </div>
+    </li>
+    <li class="self">
+        <div class="avatar"><img src="https://i.imgur.com/HYcn9xO.png" draggable="false"/></div>
+      <div class="msg">
+        <p>Hey there's a new update about this chat UI with more responsive elements! Check it now:</p>
+        <p><a href="https://codepen.io/Varo/pen/YPmwpQ" target="parent">Chat UI 2.0</a></p>
+        <time>18:09</time>
+      </div>
+    </li>
+    </ol>
+    <input class="textarea" type="text" placeholder="Type here!"/><div class="emojis"></div>-->
+	<!--<div id="float-cta">
+    <span>Envianos un whatsapp!</span>
+    <a href="javascript:void(0);">
+        <i class="fab fa-whatsapp" aria-hidden="true"></i>
+        <i class="fa fa-times" aria-hidden="true"></i>
+    </a>
+    <div class="whatsapp-msg-container">
+        <div class="whatsapp-msg-header">
+            <h6>WhatsApp Chat</h6>
+        </div>
+        <div class="whatsapp-msg-body">
+            <textarea name="whatsapp-msg" class="whatsapp-msg-textarea" placeholder="Hola, podés consultar vía whatsapp..."></textarea>
+        </div>
+        <div class="whatsapp-msg-footer">
+            <button type="button" class="btn-whatsapp-send">Enviar</button>
+        </div>
+    </div>
+</div>-->
+
+	<audio id="audio" src="https://paginacoti.000webhostapp.com/videos/samsung-sound.mp3"></audio>
+	<!--<center><div id="todoloader">
+    <div class="contentloader">
+      <div class="loader">
+        </div>
+        <nav class="mensajeloader">Loading...</nav>
+        </div>
+        </div></center>-->
+  <div id="popover-content-emojis" class="d-none">
+    <label id='emoji1'>❤️</label><label id='emoji2'>😄</label><label id='emoji3'>😮</label><label id='emoji4'>😢</label><label id='emoji5'>😠</label><label id='emoji6'>👍</label><label id='emoji7'>👎</label>
+  </div>
+	<div class="container clearfix">
+
+		<div class="people-list" id="people-list">
+			<center>
+				<svg id="listauser" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-person-lines-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+					<path fill-rule="evenodd" d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm7 1.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5zm2 9a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5z"
+					/>
+
+				</svg>
+				<strong id="numberusers">0</strong>
+<svg id="quitarlistauser" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-left-circle-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-7.646 2.646a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L6.207 7.5H11a.5.5 0 0 1 0 1H6.207l2.147 2.146z"/>
+</svg>
+</center>
+<div id="contenidouser">
+      <div class="search">
+        <input type="text" id="searchElement" placeholder="Search" />
+        <i class="fa fa-search"></i>
+        <i class="fas fa-times"></i>
+        <!--<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-x" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd" d="M11.854 4.146a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708-.708l7-7a.5.5 0 0 1 .708 0z"/>
+  <path fill-rule="evenodd" d="M4.146 4.146a.5.5 0 0 0 0 .708l7 7a.5.5 0 0 0 .708-.708l-7-7a.5.5 0 0 0-.708 0z"/>
+</svg>-->
+      </div>
+      <ul class="list">
+       <!-- <li class="clearfix">
+          <!--<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_01.jpg" alt="avatar" />-->
+   <!--<div class="about"></div>-->
+           <!-- <div class="name">Vincent Porter</div>
+            <div class="status">
+              <i class="fa fa-circle online"></i> online
+       
+          </div>
+        </li>
+        
+        <li class="clearfix">
+          <!--<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_02.jpg" alt="avatar" />-->
+       
+         <!--   <div class="name">Aiden Chavez</div>
+            <div class="status">
+              <!--<i class="fa fa-circle offline"></i> left 7 mins ago-->
+             <!-- <i class="fa fa-circle online"></i> online
+        
+          </div>
+        </li>
+        
+        <li class="clearfix">
+          <!--<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_03.jpg" alt="avatar" />-->
+         
+         <!--   <div class="name">Mike Thomas</div>
+            <div class="status">
+              <i class="fa fa-circle online"></i> online
+        
+          </div>
+        </li>
+        
+        <li class="clearfix">
+          <!--<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_04.jpg" alt="avatar" />-->
+      
+         <!--   <div class="name">Erica Hughes</div>
+            <div class="status">
+              <i class="fa fa-circle online"></i> online
+           
+          </div>
+        </li>
+        
+        <li class="clearfix">
+          <!--<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_05.jpg" alt="avatar" />-->
+         <!--
+            <div class="name">Ginger Johnston</div>
+            <div class="status">
+              <i class="fa fa-circle online"></i> online
+      
+          </div>
+        </li>
+        
+        <li class="clearfix">
+          <!--<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_06.jpg" alt="avatar" />-->
+       
+          <!--  <div class="name">Tracy Carpenter</div>
+            <div class="status">
+              <!--<i class="fa fa-circle offline"></i> left 30 mins ago-->
+           <!--   <i class="fa fa-circle online"></i> online
+       
+          </div>
+        </li>
+        
+        <li class="clearfix">
+          <!--<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_07.jpg" alt="avatar" />-->
+     
+          <!--  <div class="name">Christian Kelly</div>
+            <div class="status">
+              <!--<i class="fa fa-circle offline"></i> left 10 hours ago-->
+      
+          <!--</div>
+        </li>
+        
+        <li class="clearfix">
+          <!--<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_08.jpg" alt="avatar" />-->
+       <!--
+            <div class="name">Monica Ward</div>
+            <div class="status">
+              <i class="fa fa-circle online"></i> online
+        
+          </div>
+        </li>
+        
+        <li class="clearfix">
+          <!--<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_09.jpg" alt="avatar" />-->
+        
+           <!-- <div class="name">Dean Henry</div>
+            <div class="status">
+             <!-- <i class="fa fa-circle offline"></i> offline since Oct 28-->
+          <!--   <i class="fa fa-circle online"></i> online
+         
+          </div>
+        </li>
+        
+        <li class="clearfix">
+          <!--<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_10.jpg" alt="avatar" />-->
+    
+          <!--  <div class="name">Peyton Mckinney</div>
+            <div class="status">
+              <i class="fa fa-circle online"></i> online
+         
+          </div>
+        </li>-->
+      </ul>
+</div>
+    </div>
+    
+    <div class="chat">
+      <div class="chat-header clearfix">
+        <img src="images/grupo.png" alt="avatar" width="35px" height="35px" />
+       
+        <div class="chat-about">
+          <div class="chat-with">Group Chat</div>
+          <div class="chat-num-messages">Hay 0 mensajes</div>
+        </div>
+        <!--<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-star-fill fa fa-star" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+</svg>-->
+<!--<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-down-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+  <path fill-rule="evenodd" d="M4.646 7.646a.5.5 0 0 1 .708 0L8 10.293l2.646-2.647a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 0 1 0-.708z"/>
+  <path fill-rule="evenodd" d="M8 4.5a.5.5 0 0 1 .5.5v5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5z"/>
+</svg>-->
+<div class="cerrar-sesion" aria-hidden="true" id="dibujo" data-toggle="modal" data-target="#dialogo6">
+<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-power" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd" d="M5.578 4.437a5 5 0 1 0 4.922.044l.5-.866a6 6 0 1 1-5.908-.053l.486.875z"/>
+  <path fill-rule="evenodd" d="M7.5 8V1h1v7h-1z"/>
+</svg>
+</div>
+
+        <i class="fa fa-star"></i><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-toggle-on" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd" d="M5 3a5 5 0 0 0 0 10h6a5 5 0 0 0 0-10H5zm6 9a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"/>
+</svg><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-toggle-off" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd" d="M11 4a4 4 0 0 1 0 8H8a4.992 4.992 0 0 0 2-4 4.992 4.992 0 0 0-2-4h3zm-6 8a4 4 0 1 1 0-8 4 4 0 0 1 0 8zM0 8a5 5 0 0 0 5 5h6a5 5 0 0 0 0-10H5a5 5 0 0 0-5 5z"/>
+</svg>
+
+      </div> <!-- end chat-header -->
+      
+      <div class="chat-history">
+        <!--<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-down-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+  <path fill-rule="evenodd" d="M4.646 7.646a.5.5 0 0 1 .708 0L8 10.293l2.646-2.647a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 0 1 0-.708z"/>
+  <path fill-rule="evenodd" d="M8 4.5a.5.5 0 0 1 .5.5v5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5z"/>
+</svg>-->
+<!--<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-bar-down" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd" d="M3.646 4.146a.5.5 0 0 1 .708 0L8 7.793l3.646-3.647a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 0-.708zM1 11.5a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13a.5.5 0 0 1-.5-.5z"/>
+</svg>-->
+<center><div class="scrolldown"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-down" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+</svg></div></center>
+<center>
+  <div class="mensajesnuevos">1</div>
+</center>
+        <ul id="listMessages">
+          
+         <!-- <li class="clearfix">
+            <div class="message-data align-right">
+              <span class="message-data-time" >10:10 AM, Today</span> &nbsp; &nbsp;
+              <span class="message-data-name" >Olia</span> <i class="fa fa-circle me"></i>
+              
+            </div>
+            <div class="message other-message float-right">
+              Hi Vincent, how are you? How is the project coming along?
+            </div>
+          </li>
+          
+          <li>
+            <div class="message-data">
+              <span class="message-data-name"><i class="fa fa-circle online"></i> Vincent</span>
+              <span class="message-data-time">10:12 AM, Today</span>
+            </div>
+            <div class="message my-message">
+              Are we meeting today? Project has been already finished and I have results to show you.
+            </div>
+          </li>
+          
+          <li class="clearfix">
+            <div class="message-data align-right">
+              <span class="message-data-time" >10:14 AM, Today</span> &nbsp; &nbsp;
+              <span class="message-data-name" >Olia</span> <i class="fa fa-circle me"></i>
+              
+            </div>
+            <div class="message other-message float-right">
+              Well I am not sure. The rest of the team is not here yet. Maybe in an hour or so? Have you faced any problems at the last phase of the project?
+            </div>
+          </li>
+          
+          <li>
+            <div class="message-data">
+              <span class="message-data-name"><i class="fa fa-circle online"></i> Vincent</span>
+              <span class="message-data-time">10:20 AM, Today</span>
+            </div>
+            <div class="message my-message">
+              Actually everything was fine. I'm very excited to show this to our team.
+            </div>
+          </li>
+          
+          <li>
+            <div class="message-data">
+              <span class="message-data-name"><i class="fa fa-circle online"></i> Vincent</span>
+              <span class="message-data-time">10:31 AM, Today</span>
+            </div>
+            <a id="escribiendo">Escribiendo...</a> &nbsp;&nbsp;&nbsp;&nbsp;<!--<i class="fa fa-circle online"></i><i class="fa fa-circle online"></i><i class="fa fa-circle online"></i>-->
+           
+          <!--</li>-->
+          <!--<i id="b1" class="fa fa-circle online"></i>
+            <i id="b2" class="fa fa-circle online" style="color: #AED2A6"></i>
+            <i id="b3" class="fa fa-circle online" style="color:#DAE9DA"></i>-->
+        </ul>
+        
+      </div> <!-- end chat-history -->
+      
+      <div class="chat-message clearfix">
+        
+        <div id="contenedorform" contenteditable="false"><textarea name="message-to-send" class="message-content" id="message-to-send" placeholder ="Type your message"></textarea>
+        <button id="send"><!--Send--></button>  </div>      
+       <!-- <i class="fa fa-file-o"></i> &nbsp;&nbsp;&nbsp;-->
+        <input type="file" class="file" id="file">
+        <label class="input-file__btn" for="file">
+          <i class="fa fa-file-o"></i>
+          
+        </label>
+        <label>&nbsp;&nbsp;&nbsp;</label>
+        <input type="file" class="imagefile" id="imagefile">
+        <label class="input-file__btn" for="imagefile">
+        <i class="fa fa-file-image-o"></i>  
+        
+         </label>
+         <label>&nbsp;&nbsp;&nbsp;</label> 
+         
+         <!--<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-controller" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd" d="M11.119 2.693c.904.19 1.75.495 2.235.98.407.408.779 1.05 1.094 1.772.32.733.599 1.591.805 2.466.206.875.34 1.78.364 2.606.024.815-.059 1.602-.328 2.21a1.42 1.42 0 0 1-1.445.83c-.636-.067-1.115-.394-1.513-.773a11.307 11.307 0 0 1-.739-.809c-.126-.147-.25-.291-.368-.422-.728-.804-1.597-1.527-3.224-1.527-1.627 0-2.496.723-3.224 1.527-.119.131-.242.275-.368.422-.243.283-.494.576-.739.81-.398.378-.877.705-1.513.772a1.42 1.42 0 0 1-1.445-.83c-.27-.608-.352-1.395-.329-2.21.024-.826.16-1.73.365-2.606.206-.875.486-1.733.805-2.466.315-.722.687-1.364 1.094-1.772.486-.485 1.331-.79 2.235-.98.932-.196 2.03-.292 3.119-.292 1.089 0 2.187.096 3.119.292zm-6.032.979c-.877.185-1.469.443-1.733.708-.276.276-.587.783-.885 1.465a13.748 13.748 0 0 0-.748 2.295 12.351 12.351 0 0 0-.339 2.406c-.022.755.062 1.368.243 1.776a.42.42 0 0 0 .426.24c.327-.034.61-.199.929-.502.212-.202.4-.423.615-.674.133-.156.276-.323.44-.505C4.861 9.97 5.978 9.026 8 9.026s3.139.943 3.965 1.855c.164.182.307.35.44.505.214.25.403.472.615.674.318.303.601.468.929.503a.42.42 0 0 0 .426-.241c.18-.408.265-1.02.243-1.776a12.354 12.354 0 0 0-.339-2.406 13.753 13.753 0 0 0-.748-2.295c-.298-.682-.61-1.19-.885-1.465-.264-.265-.856-.523-1.733-.708-.85-.179-1.877-.27-2.913-.27-1.036 0-2.063.091-2.913.27z"/>
+  <path d="M11.5 6.026a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zm-1 1a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zm2 0a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zm-1 1a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zm-7-2.5h1v3h-1v-3z"/>
+  <path d="M3.5 6.526h3v1h-3v-1zM3.051 3.26a.5.5 0 0 1 .354-.613l1.932-.518a.5.5 0 0 1 .258.966l-1.932.518a.5.5 0 0 1-.612-.354zm9.976 0a.5.5 0 0 0-.353-.613l-1.932-.518a.5.5 0 1 0-.259.966l1.932.518a.5.5 0 0 0 .612-.354z"/>
+</svg>-->
+<i class="fa fa-gamepad" aria-hidden="true" data-toggle="modal" data-target="#dialogo1"></i>
+<label>&nbsp;&nbsp;&nbsp;</label>
+      <i class="fa fa-smile-o emoji_01" aria-hidden="true"></i>
+      <label id="espacio_01">&nbsp;&nbsp;&nbsp;</label>
+<i class="fa fa-pencil-square-o" aria-hidden="true" id="dibujo" data-toggle="modal" data-target="#dialogo2"></i>
+<label>&nbsp;&nbsp;&nbsp;</label>
+<i class="fa fa-cog" aria-hidden="true" data-toggle="modal" data-target="#dialogo5"></i>
+<label>&nbsp;&nbsp;&nbsp;</label>
+<i class="fas fa-file-export" aria-hidden="true" data-toggle="modal" data-target="#dialogo3"></i>
+<label>&nbsp;&nbsp;&nbsp;</label>
+<i class="far fa-envelope" aria-hidden="true" data-toggle="modal" data-target="#dialogo4"></i>
+<label>&nbsp;&nbsp;&nbsp;</label>
+<i class="fas fa-share-alt" aria-hidden="true" data-toggle="modal" data-target="#dialogo7"></i>
+      </div> <!-- end chat-message -->
+      
+    </div> <!-- end chat -->
+    
+  </div> <!-- end container -->
+
+<div class="modal fade" id="dialogo1" data-backdrop="static" data-keyboard="false">
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+    
+          <!-- cabecera del diálogo -->
+          <div class="modal-header">
+           <center> <h5 class="modal-title">Juegos</h5></center>
+            <button type="button" id="x" class="close" data-dismiss="modal">X</button>
+          </div>
+    
+          <!-- cuerpo del diálogo -->
+          <div class="modal-body">
+            <center>
+              
+              <button type="button" id="btnenviarludo" class="btn btn-primary" data-dismiss="modal">&nbsp; <nav id="txtludo">Jugar Ludo &nbsp;</nav><img src="images/ludo_web.png" id="imagenludo1" width="50px" height="50px"></img></button>
+
+              <button type="button" id="btnenviartres" class="btn btn-primary" data-dismiss="modal">&nbsp; <nav id="txttres">Jugar Tres En Raya &nbsp;</nav><img src="images/3enraya-icono.PNG" id="imagentres" width="50px" height="50px"></img> </button>
+
+              <button type="button" id="btnenviarppt" class="btn btn-primary" data-dismiss="modal">&nbsp; <nav id="txtppt">Jugar Piedra Papel o Tijera &nbsp;</nav><img src="images/ppt-icono.png" id="imagenppt" width="50px" height="50px"></img> </button>
+            </center>
+          </div>
+    
+          <!-- pie del diálogo -->
+          <div class="modal-footer">
+      
+            <button type="button" id="cancelar" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+       
+            
+          </div>
+    
+        </div>
+      </div>
+    </div> 
+    <div class="modal fade" id="dialogo2" data-backdrop="static" data-keyboard="false">
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+    
+          <!-- cabecera del diálogo -->
+          <div class="modal-header">
+           <center> <h5 class="modal-title">Dibujo</h5></center>
+            <button type="button" id="btncerrar" class="close" data-dismiss="modal">X</button>
+          </div>
+    
+          <!-- cuerpo del diálogo -->
+          <center>
+          <div class="modal-body">
+            <center>
+              <canvas id="pizarra"> Su navegador no soporta canvas :( </canvas>
+            </center>
+          </div></center>
+    
+          <!-- pie del diálogo -->
+          <div class="modal-footer">
+            <button type="button" id="btncancelar" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+
+            <button type="button" id="btnborrar" class="btn btn-danger">Borrar</button>
+            
+            <button type="button" id="btnenviar" class="btn btn-primary" data-dismiss="modal">Enviar</button>
+       
+            
+          </div>
+    
+        </div>
+      </div>
+    </div> 
+    <div class="modal fade" id="dialogo3" data-backdrop="static" data-keyboard="false">
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+    
+          <!-- cabecera del diálogo -->
+          <div class="modal-header">
+           <center> <h5 class="modal-title">¿Desea exportar los mensajes a pdf?</h5></center>
+            <button type="button" id="btncerrar" class="close" data-dismiss="modal">X</button>
+          </div>
+    
+          <!-- cuerpo del diálogo -->
+          <center>
+          <div class="modal-body">
+            
+          </div></center>
+    
+          <!-- pie del diálogo -->
+          <div class="modal-footer">
+            <button type="button" id="exportar" class="btn btn-primary full" data-dismiss="modal">Si</button>
+            <button type="button" id="cancelarexport" class="btn btn-danger" data-dismiss="modal">No</button>
+            
+          </div>
+    
+        </div>
+      </div>
+    </div> 
+    <div class="modal fade" id="dialogo4" data-backdrop="static" data-keyboard="false">
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+    
+          <!-- cabecera del diálogo -->
+          <div class="modal-header">
+           <center> <h5 class="modal-title">Enviar Correo</h5></center>
+            <button type="button" id="btncerrar" class="close" data-dismiss="modal">X</button>
+          </div>
+    
+          <!-- cuerpo del diálogo -->
+          <center>
+          <div class="modal-body">
+
+            
+            <div class="form-group">
+              <input type="text" id="txtDestinomail" name="txtDestinomail" class="form-control" placeholder="Correo(Destino)" autofocus required>
+              <!--<div class="invalid-feedback">
+              <small class="lighter">Debe ingresar destino</small>
+        </div>-->
+            </div>
+            <div class="form-group">
+              <input type="text" id="txtNommail" name="txtNommail" class="form-control" placeholder="Nombre" required>
+ <!--             <div class="invalid-feedback">
+          Debe ingresar nombre
+        </div>-->
+        <!--<center><a id="registro" href="registro.html">Registrarse</a></center>-->
+            </div>
+            <div class="form-group">
+              <textarea id="txtMessagemail" name="txtMessagemail" class="form-control txtMessagemail" placeholder="Mensaje" required></textarea>
+              <!--<div class="invalid-feedback">
+          Debe ingresar mensaje
+        </div>-->
+        <!--<center><a id="registro" href="registro.html">Registrarse</a></center>-->
+            </div>
+            
+           
+              
+         
+          </div></center>
+    
+          <!-- pie del diálogo -->
+          <div class="modal-footer">
+           <button type="button" id="enviarMail" class="btn btn-primary full" >Enviar</button>
+            
+          </div>
+    
+        </div>
+      </div>
+    </div> 
+
+ <div class="modal fade" id="dialogo5" data-backdrop="static" data-keyboard="false">
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+    
+          <!-- cabecera del diálogo -->
+          <div class="modal-header">
+           <center> <h5 id="settings" class="modal-title">Configuraciones</h5></center>
+            <button type="button" id="btncerrar" class="close" data-dismiss="modal">X</button>
+          </div>
+    
+          <!-- cuerpo del diálogo -->
+          <center>
+          <div class="modal-body">
+            <center>
+              <div class="subtitle-noti">
+                <h1 class="titleajustenoti">Ajuste de notificaciones</h1>
+              </div>
+              </center>
+              <hr style="width:55%;">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="checkConfig" value="" id="defaultCheck1">
+              <label class="form-check-label namesound" for="defaultCheck1">
+                Sonido de notificación
+              </label> 
+            </div><br>
+             <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="checkConfig2" value="" id="defaultCheck2" checked>
+              <label class="form-check-label namesound" for="defaultCheck2">
+                Notificar cuando ingrese un usuario nuevo
+              </label>
+              </div><br>
+              <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="checkConfig3" value="" id="defaultCheck3" checked>
+              <label class="form-check-label namesound" for="defaultCheck3">
+                Notificar cuando salga un usuario
+              </label>
+              </div>
+            <hr>
+            <center>
+              <div class="subtitle-noti">
+              <h1 class="titlecolornoti">Color de mensaje</h1>
+              </div>
+              </center>
+          
+            <hr style="width:47%;">
+            <div class="contentcolors">
+            <div class="contenedorcolors">
+                  <!--<div class="colorceleste colormensaje">
+                  </div>          
+   
+                  <div class="colorgreen colormensaje">
+                  </div>              
+             
+                  <div class="colorpurple colormensaje">
+                  </div>               
+                
+                  <div class="colorblue colormensaje">
+                  </div>
+           
+                  <div class="colornaranja colormensaje">
+                  </div>-->
+                  <input type="color" class="selector-color" value="#4388FF"> 
+             
+            </div>
+            </div>
+        <!--<center><a id="registro" href="registro.html">Registrarse</a></center>-->
+       
+            
+           
+              
+         
+          </div></center>
+    
+          <!-- pie del diálogo -->
+          <center> <div class="modal-footer">
+          <button type="button" id="enviarConfiguracion" class="btn btn-primary full" data-dismiss="modal">Guardar Cambios</button>
+            
+          </div></center>
+    
+        </div>
+      </div>
+    </div> 
+    
+    <div class="modal fade" id="dialogo6" data-backdrop="static" data-keyboard="false">
+      <div class="modal-dialog modal-lg modal-dialog-centered color-salir">
+        <div class="modal-content">
+    
+          <!-- cabecera del diálogo -->
+          <div class="modal-header bg-dark">
+           <center> 
+             <h5 class="modal-title2">Cerrar Sesion</h5>
+           </center>
+            <button type="button" id="btnsalir-cancel" class="close" data-dismiss="modal">X</button>
+          </div>
+    
+          <!-- cuerpo del diálogo -->
+          <center>
+          <div class="modal-body bg-dark">
+            <button class="btnsalir-sesion first" id="salir-cuenta">Salir de la cuenta</button>
+            <button class="btnsalir-sesion first" id="salir-sala">Salir de la sala</button>
+          </div></center>
+    
+          <!-- pie del diálogo -->
+         <!-- <div class="modal-footer bg-dark">
+           
+            
+          </div>-->
+    
+        </div>
+      </div>
+    </div> 
+    
+    <div class="modal fade" id="dialogo7" data-backdrop="static" data-keyboard="false">
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+    
+          <!-- cabecera del diálogo -->
+          <div class="modal-header">
+           <center> 
+             <h5 class="modal-title">Compartir invitación</h5>
+           </center>
+            <button type="button" class="close" id="cerrarinvitacion" data-dismiss="modal">X</button>
+          </div>
+    
+          <!-- cuerpo del diálogo -->
+          <center>
+          <div class="modal-body">
+            <div class="form-group">
+            <h5>Copia el siguiente enlace</h5>
+            </div>
+            <div class="form-group">
+            <input type="text" id="txtlink-url" class="form-control" readonly>
+            </div>
+            <button class="btn btn-info" id="copiarurl">Copiar</button>
+            
+          </div></center>
+    
+          <!-- pie del diálogo -->
+          <!--<div class="modal-footer">
+           
+            
+          </div>-->
+    
+        </div>
+      </div>
+    </div> 
+
+    <!---->
+ <!--
+                    button(type="button", id="ludogame", class="btn btn-primary", data-toggle="modal", data-target="#exampleModal2")
+                    img.imagenludo(src="images/icono.png", width="30px", height="30px")
+                  div(class="modal fade", id="exampleModal2", tabindex="-1", role="dialog", aria-labelledby="exampleModalLabel2", aria-hidden="true")
+                    div(class="modal-dialog")
+                      div(class="modal-content",id="header2")
+                        div(class="modal-header")
+                          h5(class="modal-title", id="exampleModalLabel2") Juegos
+                          button(type="button", id="btncerrarjuegos", class="close", data-dismiss="modal", aria-label="Close")
+                            span(aria-hidden="true") &times;
+                        center
+                        div(class="modal-body")
+                        center
+                           button(type="button", id="btnenviarludo", class="btn btn-primary",data-dismiss="modal") &nbsp; 
+                            nav#txtludo Jugar Ludo &nbsp;
+                            img(src="images/ludo_web.png",id="imagenludo1", width="55px", height="55px")
+                           button(type="button", id="btnenviartres", class="btn btn-primary",data-dismiss="modal") &nbsp; 
+                            nav#txttres Jugar Tres En Raya &nbsp;
+                            img(src="images/3enraya-icono.PNG",id="imagentres", width="55px", height="55px")
+                           button(type="button", id="btnenviarppt", class="btn btn-primary",data-dismiss="modal") &nbsp; 
+                            nav#txtppt Jugar Piedra Papel o Tijera &nbsp;
+                            img(src="images/ppt-icono.png",id="imagenppt", width="55px", height="55px")
+                        div(class="modal-footer")
+                          button(type="button", id="btnsalirjuegos", class="btn btn-danger", data-dismiss="modal") Cerrar-->
+<!--<script src="confetti.js-master/confetti.js"></script>
+<script src="confetti.js-master/confetti.min.js"></script>-->
+
+
+
+
+
+
+<!--<center><div id="preloader"><div id="contloader">
+<strong>Loading...</strong>
+  <div id="imgloader" class="spinner-border ml-auto" role="status" aria-hidden="true"></div>
+  </div>
+  </div></center>-->
+  
+  <center><div id="preloader"><div id="contloader">
+    <div id="contextoloader"><strong>Loading...</strong></div>
+        <div class="preloader"></div>
+<div class="swal-contenedor"></div>
+<!--<strong>Loading...</strong>
+  <div id="imgloader" class="spinner-border ml-auto" role="status" aria-hidden="true"></div>-->
+<!--<img id="imgloader" src="/images/chatgif.gif">-->
+  </div>
+  </div></center>
+  <!--<div id="config-panel" class="config-panel d-lg-block"><!-- d-none-->
+      <!--  <div class="panel-inner">
+            <a id="config-trigger" class="config-trigger config-panel-hide text-center" href="#"><i class="fas fa-cog fa-spin mx-auto" data-fa-transform="down-6" ></i></a>
+            <h5 class="panel-title">Choose Colour</h5>
+            <ul id="color-options" class="list-inline mb-0">
+                <li class="theme-1 active list-inline-item"><a data-style="css/theme-1.css" href="#"></a></li>
+                <li class="theme-2  list-inline-item"><a data-style="css/theme-2.css" href="#"></a></li>
+                <li class="theme-3  list-inline-item"><a data-style="css/theme-3.css" href="#"></a></li>
+                <li class="theme-4  list-inline-item"><a data-style="css/theme-4.css" href="#"></a></li>
+                <li class="theme-5  list-inline-item"><a data-style="css/theme-5.css" href="#"></a></li>
+                <li class="theme-6  list-inline-item"><a data-style="css/theme-6.css" href="#"></a></li>
+                <li class="theme-7  list-inline-item"><a data-style="css/theme-7.css" href="#"></a></li>
+                <li class="theme-8  list-inline-item"><a data-style="css/theme-8.css" href="#"></a></li>
+            </ul>
+            <a id="config-close" class="close" href="#"><i class="fa fa-times-circle"></i></a>
+        </div><!--//panel-inner-->
+    <!--</div><!--//configure-panel-->
+  <script src="scripts/importemoji.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.11.5/sweetalert2.all.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.0.0/sweetalert2.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.0.0/sweetalert2.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/@joeattardi/emoji-button@latest/dist/index.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js"></script>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.0/handlebars.min.js"></script>
+     <script src="scripts/toast-jquery.min.js"></script>
+<!--<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>-->
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/1.1.1/list.min.js"></script>
+    
+  <!-- SDK FIREBASE -->
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-app.js"></script>
+
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+  <script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-firestore.js"></script>
+  <!-- Don't change the format for any other products. -->
+  <!-- etc. -->
+
+
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyAMhsxNhBKRhYscs3SkkR1kw1gxu4IAle4",
+    authDomain: "fb-tutorial-6de95.firebaseapp.com",
+    databaseURL: "https://fb-tutorial-6de95.firebaseio.com",
+    projectId: "fb-tutorial-6de95",
+    storageBucket: "fb-tutorial-6de95.appspot.com",
+    messagingSenderId: "797160596558",
+    appId: "1:797160596558:web:270af0b76ca58966e7cf1f"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  const auth = firebase.auth();
+  const fs = firebase.firestore();
+</script>
+ <!--TOAST SCRIPTS-->
+
+  
+  <script src="scripts/toastr.js"></script>
+  <!--FIN TOAST SCRIPTS-->
+ <!--<script src="assets/plugins/jquery-3.3.1.min.js"></script>
+    <script src="assets/plugins/popper.min.js"></script> 
+    <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script> 
+
+    <!-- Style Switcher (REMOVE ON YOUR PRODUCTION SITE) -->
+    <!--<script src="assets/js/demo/style-switcher.js"></script>-->
+    <script type="module" src="scripts/chat.js"></script>
+    <script src="scripts/dibujo.js"></script>
+<script id="message-template" type="text/x-handlebars-template">
+  <li class="clearfix">
+    <div class="message-data align-right">
+      <span class="message-data-time" >{{time}}, Today</span> &nbsp; &nbsp;
+      <span class="message-data-name" >Olia</span> <i class="fa fa-circle me"></i>
+    </div>
+    <div class="message other-message float-right">
+      {{messageOutput}}
+    </div>
+  </li>
+</script>
+
+<script id="message-response-template" type="text/x-handlebars-template">
+  <li>
+    <div class="message-data">
+      <span class="message-data-name"><i class="fa fa-circle online"></i> Vincent</span>
+      <span class="message-data-time">{{time}}, Today</span>
+    </div>
+    <div class="message my-message">
+      {{response}}
+    </div>
+  </li>
+</script>
+
+
+  </body>
+</html>

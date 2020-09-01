@@ -1,0 +1,109 @@
+{
+  "listusers": [
+    {
+      "id": 1,
+      "user": "jesus",
+      "password": "123",
+      "nombres": "jesus",
+      "apellidos": "cotito"
+    },
+    {
+      "id": 2,
+      "user": "marcos",
+      "password": "123",
+      "nombres": "marcos",
+      "apellidos": "sanchez"
+    },
+    {
+      "id": 3,
+      "user": "max",
+      "password": "123",
+      "nombres": "max",
+      "apellidos": "quispe"
+    },
+    {
+      "id": 4,
+      "user": "Aea",
+      "password": "aea",
+      "nombres": "Haha",
+      "apellidos": "Jsjs"
+    },
+    {
+      "id": 5,
+      "user": "luis",
+      "password": "321",
+      "nombres": "luis",
+      "apellidos": "chavez"
+    },
+    {
+      "id": 6,
+      "user": "martin",
+      "password": "4321",
+      "nombres": "martin",
+      "apellidos": "vasquez"
+    },
+    {
+      "id": 7,
+      "user": "dsaasd",
+      "password": "daseaa",
+      "nombres": "martin",
+      "apellidos": "dasd"
+    },
+    {
+      "id": 8,
+      "user": "jmss",
+      "password": "zxc123ZXC",
+      "nombres": "Junior",
+      "apellidos": "Suncion"
+    },
+    {
+      "id": 9,
+      "user": "Aeamano@gmail.com",
+      "password": "cotasa",
+      "nombres": "Max",
+      "apellidos": "Quispe"
+    },
+    {
+      "id": 10,
+      "user": "Aeaea@gmail.com",
+      "password": "cota",
+      "nombres": "Cotasa",
+      "apellidos": "Votasa"
+    },
+    {
+      "id": 11,
+      "user": "Aya",
+      "password": "aya",
+      "nombres": "Jsjsj",
+      "apellidos": "Jjsjsjs"
+    },
+    {
+      "id": 12,
+      "user": "asdasd",
+      "password": "asd",
+      "nombres": "asd",
+      "apellidos": "asd"
+    },
+    {
+      "id": 13,
+      "user": "Xbh",
+      "password": "aea",
+      "nombres": "Tt",
+      "apellidos": "Nn"
+    },
+    {
+      "id": 14,
+      "user": "dsa",
+      "password": "dsad",
+      "nombres": "asd",
+      "apellidos": "dsa"
+    },
+    {
+      "id": 15,
+      "user": "dasd@gmail.com",
+      "password": "123456",
+      "nombres": "asd",
+      "apellidos": "dasd"
+    }
+  ]
+}
