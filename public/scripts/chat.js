@@ -41,22 +41,22 @@ import helpers from './helpers.js';
 var emojis1=document.querySelector('.emoji_01');
   var input=document.getElementById("message-to-send");
   
-	var picker=new EmojiButton({
-    	style: 'twemoji',
-    	position: 'top-end',
-    	theme: 'light',
+  var picker=new EmojiButton({
+      style: 'twemoji',
+      position: 'top-end',
+      theme: 'light',
       autoHide : false,
       emojiVersion : 5.0, //1.0,2.0,3.0,4.0,5.0,11.0,12.0,12.1
       emojiSize : "20px"
-	});
-	picker.on('emoji',function(emoji){
-		var valor=emoji.split('" src')[1];
-		input.value+=emoji.replace('<img class="emoji" draggable="false" alt="','').replace(valor,'').replace('" src','');
-	});
+  });
+  picker.on('emoji',function(emoji){
+    var valor=emoji.split('" src')[1];
+    input.value+=emoji.replace('<img class="emoji" draggable="false" alt="','').replace(valor,'').replace('" src','');
+  });
   emojis1.addEventListener('click',function(){
    
-		picker.pickerVisible?picker.hidePicker():picker.showPicker(emojis1);
-	});
+    picker.pickerVisible?picker.hidePicker():picker.showPicker(emojis1);
+  });
 
 
 // with no title
@@ -176,7 +176,7 @@ top.location.href = document.location.href ="index.html";
    }
 setTimeout(function(){
 if(controladorquit){
-  socket.emit('actualizarUser',sessionStorage.username);
+  socket.emit('actualizarUser',sessionStorage.username, sessionStorage.roomId);
   }
   },1000);
 });
@@ -188,7 +188,7 @@ $(window).click(function(){
 
   setTimeout(function(){
 if(controladorquit){
-  socket.emit('actualizarUser',sessionStorage.username);
+  socket.emit('actualizarUser',sessionStorage.username, sessionStorage.roomId);
   }
   },1000);
   
@@ -530,21 +530,21 @@ if(!identcolor){
   $('.scrolldown').css('color','white');
 
   var picker=new EmojiButton({
-    	style: 'twemoji',
-    	position: 'top-end',
-    	theme: 'dark',
+      style: 'twemoji',
+      position: 'top-end',
+      theme: 'dark',
       autoHide : false,
       emojiVersion : 5.0, //1.0,2.0,3.0,4.0,5.0,11.0,12.0,12.1
       emojiSize : "20px"
-	});
-	picker.on('emoji',function(emoji){
-		var valor=emoji.split('" src')[1];
-		input.value+=emoji.replace('<img class="emoji" draggable="false" alt="','').replace(valor,'').replace('" src','');
-	});
+  });
+  picker.on('emoji',function(emoji){
+    var valor=emoji.split('" src')[1];
+    input.value+=emoji.replace('<img class="emoji" draggable="false" alt="','').replace(valor,'').replace('" src','');
+  });
   emojis1.addEventListener('click',function(){
    
-		picker.pickerVisible?picker.hidePicker():picker.showPicker(emojis1);
-	});
+    picker.pickerVisible?picker.hidePicker():picker.showPicker(emojis1);
+  });
 
  identuserlistcolor=false;
   }
@@ -809,21 +809,21 @@ $('.chat').attr('style', `width: 88% !important; float: left;
   $('.scrolldown').css('background','white');
   $('.scrolldown').css('color','#004C99');
   var picker=new EmojiButton({
-    	style: 'twemoji',
-    	position: 'top-end',
-    	theme: 'light',
+      style: 'twemoji',
+      position: 'top-end',
+      theme: 'light',
       autoHide : false,
       emojiVersion : 5.0, //1.0,2.0,3.0,4.0,5.0,11.0,12.0,12.1
       emojiSize : "20px"
-	});
-	picker.on('emoji',function(emoji){
-		var valor=emoji.split('" src')[1];
-		input.value+=emoji.replace('<img class="emoji" draggable="false" alt="','').replace(valor,'').replace('" src','');
-	});
+  });
+  picker.on('emoji',function(emoji){
+    var valor=emoji.split('" src')[1];
+    input.value+=emoji.replace('<img class="emoji" draggable="false" alt="','').replace(valor,'').replace('" src','');
+  });
   emojis1.addEventListener('click',function(){
    
-		picker.pickerVisible?picker.hidePicker():picker.showPicker(emojis1);
-	});
+    picker.pickerVisible?picker.hidePicker():picker.showPicker(emojis1);
+  });
   identuserlistcolor=true;
   }
   $('.titleajustenoti,.titlecolornoti').css('color','rgb(50,50,50)');
@@ -2121,8 +2121,8 @@ function  notifyMe(valor,message)  {
                     body:   valor,
                     lang: 'ES',
                     //tag: 'notificacionmessage'+idnotify,
-		                icon:   "images/chat-icon.png",
-		                dir :   "ltr"//or auto
+                    icon:   "images/chat-icon.png",
+                    dir :   "ltr"//or auto
                 };     
                 if(valor!=undefined&&valor!=null&&valor!=""&&message!=undefined&&message!=null&&message!=""){
                 var  notification  =  new  Notification(message, options);
@@ -2176,7 +2176,7 @@ function updateusers(socket){
         }
        
         if(!identreap){
-            socket.emit('actualizarUser',sessionStorage.username);
+            socket.emit('actualizarUser',sessionStorage.username, sessionStorage.roomId);
           }
         
         vecsearch=data.users;
@@ -2980,7 +2980,7 @@ $('.popover1:last').dblclick(function(e){
 /*$('.popover2:last').click(function(){
   $(".popover2:last").popover({
     html: true, 
-	content: function() {
+  content: function() {
           return $('#popover-content-emojis').html();
         }
 });
