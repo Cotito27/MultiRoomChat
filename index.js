@@ -14,13 +14,9 @@ app.get('*', function(req,res){
 app.set('port',process.env.PORT || 5000);
 //bind the server to the 80 port
 //server.listen(3000);//for local test
-<<<<<<< HEAD
 server.listen(app.get('port'), () => {
     console.log('Server on port '+app.get('port'));
 });//publish to heroku
-=======
-server.listen(process.env.PORT || 5000);//publish to heroku
->>>>>>> 81b81ef78abbdc82a08d52f8c669bda87fb74beb
 //server.listen(process.env.OPENSHIFT_NODEJS_PORT || 3000);//publish to openshift
 //console.log('server started on port'+process.env.PORT || 3000);
 //handle the socket
@@ -60,7 +56,7 @@ io.sockets.on('connection', function(socket) {
 console.log("conectado"); 
   socket.on('registeruser',function(data){
      contobj++;
-     console.log('registrando...');
+     //console.log('registrando...');
         obj.listusers.push({"id":contobj,"user":data.user,"password":data.password,"nombres":data.nombres,"apellidos":data.apellidos});
 
 jsonfile.writeFile('db.json', obj, {spaces:2}, function(err){
@@ -69,7 +65,7 @@ jsonfile.writeFile('db.json', obj, {spaces:2}, function(err){
   });
 
     socket.on('registrarSesion',function(data){
-    console.log('registrando...');
+    //console.log('registrando...');
         objsesions.listsessions.push({"id":data.sessionId,"name":data.nameSession});
 
 /*jsonfile.writeFile('salas.json', objsesions, {spaces:2}, function(err){
@@ -93,7 +89,7 @@ jsonfile.writeFile('db.json', obj, {spaces:2}, function(err){
           respuesta=true;
         }
       }
-      console.log(respuesta+" "+data.sessionId);
+      //console.log(respuesta+" "+data.sessionId);
       socket.emit('validarSesion',respuesta);
     });
     socket.on('userconnect',function(data){
@@ -124,7 +120,7 @@ jsonfile.writeFile('db.json', obj, {spaces:2}, function(err){
       var lastusersession=sessions[sessions.indexOf(socket.sessionId)];
         socket.emit('userconnect',{users},sessions,lastusersession);
         socket.broadcast.emit('userconnect',{users},sessions,lastusersession);
-        console.log(users[0]);
+        //console.log(users[0]);
     });
     socket.on('disconnect',function(){
       var userdisconnect;
@@ -141,7 +137,7 @@ jsonfile.writeFile('db.json', obj, {spaces:2}, function(err){
         
         
         if(userdisconnect!=undefined&&userdisconnect!=null){
-          console.log(userdisconnect);
+          //console.log(userdisconnect);
           socket.emit('userdisconnect',userdisconnect,usersession);
         socket.broadcast.emit('userdisconnect',userdisconnect,usersession);
         }
@@ -204,7 +200,7 @@ var valor=""+users[i];
       if(user!=""&&user!=null&&user!=undefined){
         if(!confir){
       users.push(user);
-      console.log('lista actualizada');
+      //console.log('lista actualizada');
       var lastusersession=sessions[sessions.indexOf(socket.sessionId)];
       socket.emit('userconnect',{users},sessions,lastusersession);
         socket.broadcast.emit('userconnect',{users},sessions,lastusersession);
