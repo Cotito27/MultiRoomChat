@@ -72,6 +72,7 @@ import helpers from "./helpers.js";
     window.location = "main.html";
     return;
   }
+<<<<<<< HEAD
   //alert(sessionStorage.username);
 
   var validado = false;
@@ -87,6 +88,50 @@ import helpers from "./helpers.js";
       navigator.userAgent.match(/iPad/i) ||
       navigator.userAgent.match(/BlackBerry/i)
     );
+=======
+var emojis1=document.querySelector('.emoji_01');
+  var input=document.getElementById("message-to-send");
+  
+  var picker=new EmojiButton({
+      style: 'twemoji',
+      position: 'top-end',
+      theme: 'light',
+      autoHide : false,
+      emojiVersion : 5.0, //1.0,2.0,3.0,4.0,5.0,11.0,12.0,12.1
+      emojiSize : "20px"
+  });
+  picker.on('emoji',function(emoji){
+    var valor=emoji.split('" src')[1];
+    input.value+=emoji.replace('<img class="emoji" draggable="false" alt="','').replace(valor,'').replace('" src','');
+  });
+  emojis1.addEventListener('click',function(){
+   
+    picker.pickerVisible?picker.hidePicker():picker.showPicker(emojis1);
+  });
+
+
+// with no title
+
+if(sessionStorage.username==""||sessionStorage.username==null||sessionStorage.username==undefined){
+  window.location="main.html";
+  return;
+}
+//alert(sessionStorage.username);
+
+var validado=false;
+var verificadorpop=false;
+var generalpop;
+
+function isMobile(){
+      return (
+          (navigator.userAgent.match(/Android/i)) ||
+          (navigator.userAgent.match(/webOS/i)) ||
+          (navigator.userAgent.match(/iPhone/i)) ||
+          (navigator.userAgent.match(/iPod/i)) ||
+          (navigator.userAgent.match(/iPad/i)) ||
+          (navigator.userAgent.match(/BlackBerry/i))
+      );
+>>>>>>> 81b81ef78abbdc82a08d52f8c669bda87fb74beb
   }
   if (isMobile()) {
     $("#espacio_01").css("display", "none");
@@ -179,6 +224,7 @@ top.location.href = document.location.href ="index.html";
   cancel(socket);
   escribirMessage(socket);
   exportarMessages(socket);
+<<<<<<< HEAD
   var controladorquit = true;
   var controlfocusmessage = true;
   var numbermessagenew = 0;
@@ -220,6 +266,32 @@ top.location.href = document.location.href ="index.html";
     aux.select();
     document.execCommand("copy");
     document.body.removeChild(aux);
+=======
+  var controladorquit=true;
+  var controlfocusmessage=true;
+  var numbermessagenew=0;
+ $(window).focus(function(){
+   controlfocusmessage=true;
+   if(controlfocusmessage){
+     document.title="Chat Grupal";
+     numbermessagenew=0;
+   }
+setTimeout(function(){
+if(controladorquit){
+  socket.emit('actualizarUser',sessionStorage.username, sessionStorage.roomId);
+  }
+  },1000);
+});
+$(window).blur(function(){
+  controlfocusmessage=false;
+  
+});
+$(window).click(function(){
+
+  setTimeout(function(){
+if(controladorquit){
+  socket.emit('actualizarUser',sessionStorage.username, sessionStorage.roomId);
+>>>>>>> 81b81ef78abbdc82a08d52f8c669bda87fb74beb
   }
 
   $("#copiarurl").click(function () {
@@ -553,6 +625,7 @@ top.location.href = document.location.href ="index.html";
   background: rgb(52,61,91);
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
+<<<<<<< HEAD
   color: #fff;`
           );
           $(this).hide();
@@ -645,6 +718,91 @@ top.location.href = document.location.href ="index.html";
       });
 
       identuserlistcolor = false;
+=======
+  color: #fff;`);
+  $(this).hide();
+  $(this).css('display','none');
+  $('.bi-toggle-off').show();
+  $('.bi-toggle-off').css('display','block');
+  $('#message-to-send,#txtDestinomail,#txtNommail,#txtMessagemail').css('background','#155483');
+  $('#contenedorform').css('background','#155483');
+  $('#send').css('background','#155483');
+  $('#message-to-send,#txtDestinomail,#txtNommail,#txtMessagemail').css('color','#fff');
+  $('#contenedorform').css('color','#fff');
+  $('#send').css('color','#fff');
+  $('#message-to-send,#txtDestinomail,#txtNommail,#txtMessagemail').addClass('cambio_place');
+  $('#message-to-send').css('border','none');
+   $('.fa-file-image-o,.fa-file-o,.fa-gamepad,.fa-smile-o,.fa-pencil-square-o,.fa-cog,.fa-file-export,.fa-envelope,.fa-share-alt').css('color','rgb(225,225,225)');
+  $('.bi-power').css('color','white');
+  $('.scrolldown').css('background','#004C99');
+  $('.scrolldown').css('color','white');
+  }
+ }else{
+  
+  $('.chat').css('background','rgb(52,61,91)');
+  $('.chat').css('color','#fff');
+  $(this).hide();
+  $(this).css('display','none');
+  $('.bi-toggle-off').show();
+  $('.bi-toggle-off').css('display','block');
+  $('#message-to-send,#txtDestinomail,#txtNommail,#txtMessagemail').css('background','#155483');
+  $('#contenedorform').css('background','#155483');
+  $('#send').css('background','#155483');
+  $('#message-to-send,#txtDestinomail,#txtNommail,#txtMessagemail').css('color','#fff');
+  $('#contenedorform').css('color','#fff');
+  $('#send').css('color','#fff');
+  $('#message-to-send,#txtDestinomail,#txtNommail,#txtMessagemail').addClass('cambio_place');
+  $('#message-to-send').css('border','none');
+  $('.fa-file-image-o,.fa-file-o,.fa-gamepad,.fa-smile-o,.fa-pencil-square-o,.fa-cog,.fa-file-export,.fa-envelope,.fa-share-alt').css('color','rgb(225,225,225)');
+  $('.bi-power').css('color','white');
+  $('.scrolldown').css('background','#004C99');
+  $('.scrolldown').css('color','white');
+ }
+
+ $('.modal-content').css('background','rgb(52, 61, 91)');
+ $('.modal-content').css('color','white');
+ $('.swal2-popup,.swal2-modal,.swal2-show').css('background','rgb(52, 61, 91)');
+ $('.swal2-popup,.swal2-modal,.swal2-show').css('color','white');
+ $('#x').css('color','white');
+ $('.close').css('color','white');
+ $('.scrolldown').css('background','#004C99');
+  $('.scrolldown').css('color','white');
+
+  var picker=new EmojiButton({
+      style: 'twemoji',
+      position: 'top-end',
+      theme: 'dark',
+      autoHide : false,
+      emojiVersion : 5.0, //1.0,2.0,3.0,4.0,5.0,11.0,12.0,12.1
+      emojiSize : "20px"
+  });
+  picker.on('emoji',function(emoji){
+    var valor=emoji.split('" src')[1];
+    input.value+=emoji.replace('<img class="emoji" draggable="false" alt="','').replace(valor,'').replace('" src','');
+  });
+  emojis1.addEventListener('click',function(){
+   
+    picker.pickerVisible?picker.hidePicker():picker.showPicker(emojis1);
+  });
+
+ identuserlistcolor=false;
+  }
+ $('.titleajustenoti,.titlecolornoti').css('color','rgb(245,245,245)');
+  $('.namesound').css('color','rgb(235,235,235)');
+  $('hr').addClass('colorhr');
+  $(elementcolorselected).css('border','3.5px solid rgb(250, 250, 250)');
+  $('.colorblue,.colorgreen,.colorpurple,.colorceleste,.colornaranja').click(function(){
+    $('.colormensaje').css('border','none');
+    $(this).css('border','3.5px solid rgb(250, 250, 250)');
+    elementcolorselected=this;
+  });
+  $('.colorblue,.colorgreen,.colorpurple,.colorceleste,.colornaranja').mouseenter(function(){
+    $(this).css('border','3.5px solid rgb(250, 250, 250)');
+  });
+  $('.colorblue,.colorgreen,.colorpurple,.colorceleste,.colornaranja').mouseout(function(){
+    if(elementcolorselected!=this){
+      $(this).css('border','none');
+>>>>>>> 81b81ef78abbdc82a08d52f8c669bda87fb74beb
     }
     $(".titleajustenoti,.titlecolornoti").css("color", "rgb(245,245,245)");
     $(".namesound").css("color", "rgb(235,235,235)");
@@ -917,6 +1075,7 @@ min-height:408px !important;`);*/
   background: #F2F5F8;
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
+<<<<<<< HEAD
   color: #434651;`
           );
           $(this).hide();
@@ -1002,6 +1161,86 @@ min-height:408px !important;`);*/
         picker.pickerVisible ? picker.hidePicker() : picker.showPicker(emojis1);
       });
       identuserlistcolor = true;
+=======
+  color: #434651;`);
+  $(this).hide();
+  $(this).css('display','none');
+  $('.bi-toggle-on').show();
+  $('.bi-toggle-on').css('display','block');
+  $('#message-to-send,#txtDestinomail,#txtNommail,#txtMessagemail').css('background','#fff');
+  $('#contenedorform').css('background','#fff');
+  $('#send').css('background','#fff');
+  $('#message-to-send,#txtDestinomail,#txtNommail,#txtMessagemail').css('color','#000');
+  $('#contenedorform').css('color','#000');
+  $('#send').css('color','#000');
+  $('#message-to-send,#txtDestinomail,#txtNommail,#txtMessagemail').removeClass('cambio_place');
+  $('.fa-file-image-o,.fa-file-o,.fa-gamepad,.fa-smile-o,.fa-pencil-square-o,.fa-cog,.fa-file-export,.fa-envelope,.fa-share-alt').css('color','gray');
+  $('.bi-power').css('color','black');
+  $('.scrolldown').css('background','white');
+  $('.scrolldown').css('color','#004C99');
+  }
+  }else{    
+  $('.chat').css('background','#F2F5F8');
+  $('.chat').css('color','#434651');
+  $(this).hide();
+  $(this).css('display','none');
+  $('.bi-toggle-on').show();
+  $('.bi-toggle-on').css('display','block');
+  $('#message-to-send,#txtDestinomail,#txtNommail,#txtMessagemail').css('background','#fff');
+  $('#contenedorform').css('background','#fff');
+  $('#send').css('background','#fff');
+  $('#message-to-send,#txtDestinomail,#txtNommail,#txtMessagemail').css('color','#000');
+  $('#contenedorform').css('color','#000');
+  $('#send').css('color','#000');
+  $('#message-to-send,#txtDestinomail,#txtNommail,#txtMessagemail').removeClass('cambio_place');
+    $('.fa-file-image-o,.fa-file-o,.fa-gamepad,.fa-smile-o,.fa-pencil-square-o,.fa-cog,.fa-file-export,.fa-envelope,.fa-share-alt').css('color','gray');
+  $('.bi-power').css('color','black');
+  $('.scrolldown').css('background','white');
+  $('.scrolldown').css('color','#004C99');
+  }
+  
+  $('.modal-content').css('background','white');
+ $('.modal-content').css('color','black');
+  $('.swal2-popup,.swal2-modal,.swal2-show').css('background','white');
+ $('.swal2-popup,.swal2-modal,.swal2-show').css('color','black');
+ $('#x').css('color','black');
+  $('.close').css('color','black');
+  $('.scrolldown').css('background','white');
+  $('.scrolldown').css('color','#004C99');
+  var picker=new EmojiButton({
+      style: 'twemoji',
+      position: 'top-end',
+      theme: 'light',
+      autoHide : false,
+      emojiVersion : 5.0, //1.0,2.0,3.0,4.0,5.0,11.0,12.0,12.1
+      emojiSize : "20px"
+  });
+  picker.on('emoji',function(emoji){
+    var valor=emoji.split('" src')[1];
+    input.value+=emoji.replace('<img class="emoji" draggable="false" alt="','').replace(valor,'').replace('" src','');
+  });
+  emojis1.addEventListener('click',function(){
+   
+    picker.pickerVisible?picker.hidePicker():picker.showPicker(emojis1);
+  });
+  identuserlistcolor=true;
+  }
+  $('.titleajustenoti,.titlecolornoti').css('color','rgb(50,50,50)');
+  $('.namesound').css('color','rgb(70,70,70)');
+  $('hr').removeClass('colorhr');
+  $(elementcolorselected).css('border','3.5px solid rgb(10, 10, 10)');
+  $('.colorblue,.colorgreen,.colorpurple,.colorceleste,.colornaranja').click(function(){
+    $('.colormensaje').css('border','none');
+    $(this).css('border','3.5px solid rgb(10, 10, 10)');
+    elementcolorselected=this;
+  });
+  $('.colorblue,.colorgreen,.colorpurple,.colorceleste,.colornaranja').mouseenter(function(){
+    $(this).css('border','3.5px solid rgb(10, 10, 10)');
+  });
+  $('.colorblue,.colorgreen,.colorpurple,.colorceleste,.colornaranja').mouseout(function(){
+    if(elementcolorselected!=this){
+      $(this).css('border','none');
+>>>>>>> 81b81ef78abbdc82a08d52f8c669bda87fb74beb
     }
     $(".titleajustenoti,.titlecolornoti").css("color", "rgb(50,50,50)");
     $(".namesound").css("color", "rgb(70,70,70)");
@@ -2272,7 +2511,36 @@ min-height:408px !important;`);*/
             };
           }
         }
+<<<<<<< HEAD
       });
+=======
+    }  
+    else  if  (Notification.permission  !==  'denied')  {
+        Notification.requestPermission(function (permission)  {
+            if  (!('permission'  in  Notification))  {
+                Notification.permission  =  permission;
+            }
+            if  (permission  ===  "granted")  {
+              idnotify++;
+                var  options  =   {
+                    body:   valor,
+                    lang: 'ES',
+                    //tag: 'notificacionmessage'+idnotify,
+                    icon:   "images/chat-icon.png",
+                    dir :   "ltr"//or auto
+                };     
+                if(valor!=undefined&&valor!=null&&valor!=""&&message!=undefined&&message!=null&&message!=""){
+                var  notification  =  new  Notification(message, options);
+                setTimeout(notification.close.bind(notification), 5000);
+                notification.onclick = function(event) {
+                    //event.preventDefault(); // Previene al buscador de mover el foco a la pestaña del Notification
+                    $(window).focus();
+                    this.close();
+                  }
+                }
+            }   
+        });  
+>>>>>>> 81b81ef78abbdc82a08d52f8c669bda87fb74beb
     }
   }
   var identdisconnect = false;
@@ -2309,6 +2577,7 @@ min-height:408px !important;`);*/
             $("#numberusers").html($(".name").length);
           }
         }
+<<<<<<< HEAD
 
         if (!identreap) {
           socket.emit(
@@ -2319,6 +2588,14 @@ min-height:408px !important;`);*/
         }
 
         vecsearch = data.users;
+=======
+       
+        if(!identreap){
+            socket.emit('actualizarUser',sessionStorage.username, sessionStorage.roomId);
+          }
+        
+        vecsearch=data.users;
+>>>>>>> 81b81ef78abbdc82a08d52f8c669bda87fb74beb
       }
       //if(sessions[sessions.length-1]==sessionStorage.roomId){
       if (userlastsession == sessionStorage.roomId) {
