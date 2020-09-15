@@ -11,9 +11,12 @@ app.get('*', function(req,res){
   res.status(404).redirect('error.html');
 
 });
+app.set('port',process.env.PORT || 5000);
 //bind the server to the 80 port
 //server.listen(3000);//for local test
-server.listen(process.env.PORT || 5000);//publish to heroku
+server.listen(app.get('port'), () => {
+    console.log('Server on port '+app.get('port'));
+});//publish to heroku
 //server.listen(process.env.OPENSHIFT_NODEJS_PORT || 3000);//publish to openshift
 //console.log('server started on port'+process.env.PORT || 3000);
 //handle the socket
@@ -37,7 +40,7 @@ var obj={
     for(var i=0;i<userexist.listusers.length;i++){
       obj.listusers.push(userexist.listusers[i]);
     }
- console.log(obj.listusers[0]);
+ //console.log(obj.listusers[0]);
 contobj=obj.listusers.length;
 
 var objsesions={

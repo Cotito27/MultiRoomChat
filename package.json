@@ -1,5 +1,5 @@
 {
-  "name": "ChatNodeJS",
+  "name": "chatnodejs",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -29,5 +29,8 @@
     "scss": "^0.2.4",
     "socket.io": "^2.3.0",
     "sweetalert2": "^9.17.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
   }
 }
